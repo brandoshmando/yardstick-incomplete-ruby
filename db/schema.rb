@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129042212) do
+ActiveRecord::Schema.define(version: 20160129043138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20160129042212) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_admins_on_user_id", using: :btree
+  end
+
+  create_table "admins_organizations", id: false, force: :cascade do |t|
+    t.integer "admin_id"
+    t.integer "organization_id"
+    t.index ["admin_id", "organization_id"], name: "index_admins_organizations_on_admin_id_and_organization_id", unique: true, using: :btree
+    t.index ["admin_id"], name: "index_admins_organizations_on_admin_id", using: :btree
+    t.index ["organization_id"], name: "index_admins_organizations_on_organization_id", using: :btree
   end
 
   create_table "arbiters", force: :cascade do |t|
@@ -42,6 +50,22 @@ ActiveRecord::Schema.define(version: 20160129042212) do
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "organizations_subjects", id: false, force: :cascade do |t|
+    t.integer "organization_id"
+    t.integer "subject_id"
+    t.index ["organization_id", "subject_id"], name: "index_organizations_subjects_on_organization_id_and_subject_id", unique: true, using: :btree
+    t.index ["organization_id"], name: "index_organizations_subjects_on_organization_id", using: :btree
+    t.index ["subject_id"], name: "index_organizations_subjects_on_subject_id", using: :btree
+  end
+
+  create_table "organizations_superusers", id: false, force: :cascade do |t|
+    t.integer "organization_id"
+    t.integer "superuser_id"
+    t.index ["organization_id", "superuser_id"], name: "index_org_superusers_on_org_id_and_superuser_id", unique: true, using: :btree
+    t.index ["organization_id"], name: "index_organizations_superusers_on_organization_id", using: :btree
+    t.index ["superuser_id"], name: "index_organizations_superusers_on_superuser_id", using: :btree
   end
 
   create_table "subjects", force: :cascade do |t|
