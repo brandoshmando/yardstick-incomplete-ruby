@@ -7,6 +7,7 @@ class User < ApplicationRecord
     has_many :admins
     has_many :arbiters
     has_many :subjects
+    has_many :superusers
 
     private
     def generate_token
