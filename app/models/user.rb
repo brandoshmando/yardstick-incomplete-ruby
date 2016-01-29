@@ -4,9 +4,9 @@ class User < ApplicationRecord
 
     #relations
     has_one :token
-    has_one :admin
-    has_one :arbiter
-    has_one :subject
+    has_many :admins
+    has_many :arbiters
+    has_many :subjects
 
     private
     def generate_token
