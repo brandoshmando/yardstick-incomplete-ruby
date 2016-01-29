@@ -46,13 +46,6 @@ ActiveRecord::Schema.define(version: 20160128030546) do
     t.index ["value"], name: "index_tokens_on_value", unique: true, using: :btree
   end
 
-  create_table "user_tokens", force: :cascade do |t|
-    t.string   "value"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
