@@ -21,30 +21,33 @@ ActiveRecord::Schema.define(version: 20160228201352) do
     t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["organization_id", "user_id"], name: "index_admins_on_organization_id_and_user_id", unique: true, using: :btree
-    t.index ["organization_id"], name: "index_admins_on_organization_id", using: :btree
-    t.index ["user_id"], name: "index_admins_on_user_id", using: :btree
   end
+
+  add_index "admins", ["organization_id", "user_id"], name: "index_admins_on_organization_id_and_user_id", unique: true, using: :btree
+  add_index "admins", ["organization_id"], name: "index_admins_on_organization_id", using: :btree
+  add_index "admins", ["user_id"], name: "index_admins_on_user_id", using: :btree
 
   create_table "arbiters", force: :cascade do |t|
     t.integer  "organization_id"
     t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["organization_id", "user_id"], name: "index_arbiters_on_organization_id_and_user_id", unique: true, using: :btree
-    t.index ["organization_id"], name: "index_arbiters_on_organization_id", using: :btree
-    t.index ["user_id"], name: "index_arbiters_on_user_id", using: :btree
   end
 
+  add_index "arbiters", ["organization_id", "user_id"], name: "index_arbiters_on_organization_id_and_user_id", unique: true, using: :btree
+  add_index "arbiters", ["organization_id"], name: "index_arbiters_on_organization_id", using: :btree
+  add_index "arbiters", ["user_id"], name: "index_arbiters_on_user_id", using: :btree
+
   create_table "managers", force: :cascade do |t|
-    t.integer  "organzation_id"
+    t.integer  "organization_id"
     t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["organzation_id", "user_id"], name: "index_managers_on_organzation_id_and_user_id", unique: true, using: :btree
-    t.index ["organzation_id"], name: "index_managers_on_organzation_id", using: :btree
-    t.index ["user_id"], name: "index_managers_on_user_id", using: :btree
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
+
+  add_index "managers", ["organization_id", "user_id"], name: "index_managers_on_organization_id_and_user_id", unique: true, using: :btree
+  add_index "managers", ["organization_id"], name: "index_managers_on_organization_id", using: :btree
+  add_index "managers", ["user_id"], name: "index_managers_on_user_id", using: :btree
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
@@ -58,19 +61,22 @@ ActiveRecord::Schema.define(version: 20160228201352) do
     t.string   "unique_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["organization_id", "user_id"], name: "index_subjects_on_organization_id_and_user_id", unique: true, using: :btree
-    t.index ["organization_id"], name: "index_subjects_on_organization_id", using: :btree
-    t.index ["unique_id"], name: "index_subjects_on_unique_id", using: :btree
-    t.index ["user_id"], name: "index_subjects_on_user_id", using: :btree
   end
+
+  add_index "subjects", ["organization_id", "user_id"], name: "index_subjects_on_organization_id_and_user_id", unique: true, using: :btree
+  add_index "subjects", ["organization_id"], name: "index_subjects_on_organization_id", using: :btree
+  add_index "subjects", ["unique_id"], name: "index_subjects_on_unique_id", using: :btree
+  add_index "subjects", ["user_id"], name: "index_subjects_on_user_id", using: :btree
 
   create_table "tokens", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["value"], name: "index_tokens_on_value", using: :btree
   end
+
+  add_index "tokens", ["user_id"], name: "index_tokens_on_user_id", using: :btree
+  add_index "tokens", ["value"], name: "index_tokens_on_value", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -78,7 +84,8 @@ ActiveRecord::Schema.define(version: 20160228201352) do
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", using: :btree
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
 
 end
