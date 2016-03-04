@@ -1,4 +1,4 @@
-class Subject < ApplicationRecord
+class Manager < ApplicationRecord
     #relations
     belongs_to :user
     belongs_to :organization

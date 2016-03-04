@@ -1,7 +1,14 @@
 class Organization < ApplicationRecord
     #relations
-    has_and_belongs_to_many :admins
-    has_and_belongs_to_many :arbiters
-    has_and_belongs_to_many :subjects
-    has_and_belongs_to_many :superusers
+    has_many :admins
+    has_many :users, through: :admins
+
+    has_many :arbiters
+    has_many :users, through: :arbiters
+
+    has_many :managers
+    has_many :users, through: :managers
+
+    has_many :subjects
+    has_many :users, through: :subjects
 end
