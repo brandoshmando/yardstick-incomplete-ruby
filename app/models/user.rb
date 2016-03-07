@@ -6,16 +6,16 @@ class User < ApplicationRecord
     has_one :token
 
     has_many :admins
-    has_many :organizations, through: :admins
+    has_many :admin_organizations, through: :admins, source: :organization
 
     has_many :arbiters
-    has_many :organizations, through: :arbiters
+    has_many :arbiter_organizations, through: :arbiters, source: :organization
 
     has_many :managers
-    has_many :organizations, through: :managers
+    has_many :manager_organizations, through: :managers, source: :organization
 
     has_many :subjects
-    has_many :organizations, through: :subjects
+    has_many :subject_organizations, through: :subjects, source: :organization
 
     private
     def generate_token

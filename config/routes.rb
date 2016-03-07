@@ -1,5 +1,3 @@
 Rails.application.routes.draw do
-  get 'superuser/post'
-
-    post 'signup', to: 'superusers#create'
+    post 'signup', to: 'organization#create'
 end
